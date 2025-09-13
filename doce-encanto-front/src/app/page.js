@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <div className="h-full bg-[#CDECF9] ">
       <Hero />
+      <main className="pt-32"></main>
     </div>
   );
 }
