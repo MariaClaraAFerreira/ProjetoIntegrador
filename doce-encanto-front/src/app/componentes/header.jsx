@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ShoppingCart } from 'lucide-react'
+
 
 export default function Header() {
   return (
@@ -62,6 +64,19 @@ export default function Header() {
               >
                 Contato
               </Link>
+
+               <Link
+              
+                href="/Carinho"
+                
+                className=" flex  px-6 py-2 rounded-full  bg-gradient-to-r from-blue-300 to-blue-800 text-white 
+           hover:from-blue-100 hover:to-blue-200 transition-all duration-200 font-medium shadow-lg"
+              >
+                <ShoppingCart className='mr-2' />
+                Carrinho
+              </Link>
+
+              
             </nav>
           </div>
         </div>

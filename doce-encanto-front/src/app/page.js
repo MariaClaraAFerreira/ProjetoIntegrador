@@ -3,8 +3,8 @@ import Header from "./componentes/header";
 import Caixa from "./componentes/caixa";
 import Sobre_nos from "./componentes/sobre_nos";
 import Footer from "./componentes/footer";
-import Categoria from "./componentes/categoria";
-import Cardprodutos from "./componentes/cardprodutos";
+import ProdutosPage from "./componentes/cardprodutos";
+
 
 export default function Home() {
   return (
@@ -18,9 +18,10 @@ export default function Home() {
 
 
       <div className="flex justify-center items-center mt-10">
-      <Categoria/>
       
       </div>
+       <ProdutosPage/>
+       
 
       <Sobre_nos/>
       <Footer/>
