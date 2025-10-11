@@ -7,11 +7,11 @@ import { ShoppingCart } from 'lucide-react'
 export default function Header() {
   return (
           
-        <header className="fixed top-0 w-full z-50 transition-all duration-500">
+        <header className="fixed top-0 w-full z-50 transition-all duration-500 bg-[#CDECF9]">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="relative group">
+            <div className="">
               <Link href="">
                 <div className="relative bg-gradient-to-r from-pink-400 to-rose-500 rounded-2xl p-4 shadow-2xl transform group-hover:scale-105 transition-all duration-300">
                   <div className="flex items-center gap-3">
@@ -65,16 +65,7 @@ export default function Header() {
                 Contato
               </Link>
 
-               <Link
               
-                href="/Carinho"
-                
-                className=" flex  px-6 py-2 rounded-full  bg-gradient-to-r from-blue-300 to-blue-800 text-white 
-           hover:from-blue-100 hover:to-blue-200 transition-all duration-200 font-medium shadow-lg"
-              >
-                <ShoppingCart className='mr-2' />
-                Carrinho
-              </Link>
 
               
             </nav>
