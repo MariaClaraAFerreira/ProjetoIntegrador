@@ -30,3 +30,10 @@ export default function Home() {
     </div>
   );
 }
+export const metadata = {
+  title: "Barkery",
+  description: "Pablynne",
+  icons: {
+    icon: "/logo_amor1.png", // caminho da imagem dentro de public
+  },
+};

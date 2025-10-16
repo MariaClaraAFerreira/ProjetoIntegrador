@@ -3,6 +3,9 @@ import "./globals.css";
 export const metadata = {
   title: "Barkery",
   description: "Pablynne",
+  icons: {
+    icon: "/logo_amor1.png", // caminho da imagem dentro de public
+  },
 };
 
 export default function RootLayout({ children }) {
