@@ -3,7 +3,6 @@ import Header from "./componentes/header";
 import Caixa from "./componentes/caixa";
 import Sobre_nos from "./componentes/sobre_nos";
 import Footer from "./componentes/footer";
-import Categoria from "./componentes/categoria";
 import Cardprodutos from "./componentes/cardprodutos";
 import Carrossel from "./componentes/carrossel";
 
@@ -13,17 +12,18 @@ export default function Home() {
       <div className="">
         <Header />
       </div>
-      <div>
-        <Carrossel />
-      </div>
 
       <div className="mt-34">
         <Caixa />
       </div>
-
-      <div className="flex justify-center items-center mt-10">
-        <Categoria />
+      <div className="mt-40">
+        <Carrossel />
       </div>
+      <div className="mt-20">
+        <Cardprodutos />
+      </div>
+
+      <div className="flex justify-center items-center mt-10"></div>
 
       <Sobre_nos />
       <Footer />
