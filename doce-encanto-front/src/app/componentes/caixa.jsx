@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Caixa() {
   return (
-    <section className="relative w-[1475px] h-80 flex   items-center justify-center overflow-hidden border border-gray-100  group-hover:opacity-100 transition duration-300">
+    <section className="relative w-[1475px] h-[400px] flex   items-center justify-center overflow-hidden border border-gray-100  group-hover:opacity-100 transition duration-300">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{

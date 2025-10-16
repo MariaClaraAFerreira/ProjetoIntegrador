@@ -26,21 +26,27 @@ export default function CardProdutos() {
       id: 2,
       nome: "Torta de Limão",
       preco: 39.9,
+
       imagem: "bolo1.jpeg",
+
       categoria: "tortas",
     },
     {
       id: 3,
       nome: "Brigadeiro Gourmet",
       preco: 2.5,
+
       imagem: "bombom.jpeg",
+
       categoria: "doces",
     },
     {
       id: 4,
       nome: "Cupcake de Baunilha",
       preco: 7.9,
+
       imagem: "cupcake.jpeg",
+
       categoria: "cupcakes",
     },
     {
