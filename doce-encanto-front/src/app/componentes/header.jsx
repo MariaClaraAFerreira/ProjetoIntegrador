@@ -72,13 +72,13 @@ export default function Header() {
               Início
             </Link>
 
-            <Link
+            {/* <Link
               href="/cadastrar-produto"
               className="flex items-center gap-1 px-3 py-2 rounded-full text-white bg-gradient-to-r from-pink-500 to-purple-500 shadow-md hover:from-pink-600 hover:to-purple-600 transition"
             >
               <ClipboardList className="w-4 h-4" />
               Cadastrar Produto
-            </Link>
+            </Link> */}
 
             <Link
               href="/monte-seu-bolo"
