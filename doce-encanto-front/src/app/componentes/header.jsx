@@ -2,7 +2,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import {
+  Menu,
+  X,
+  ShoppingCart,
+  Home,
+  ClipboardList,
+  Cake,
+  LogIn,
+  UserPlus,
+} from "lucide-react"; // importando todos os ícones necessários
 import {
   Sheet,
   SheetContent,
@@ -11,6 +20,7 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet"; // shadcn
+import { Button } from "@/components/ui/button"; // shadcn
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,7 +28,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full z-50 bg-white shadow-md">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo
         <Link href="/" className="flex items-center gap-3">
           <div className="bg-gradient-to-r from-pink-400 to-rose-500 rounded-2xl p-3 shadow-md flex items-center gap-3">
             <Image
@@ -30,7 +40,7 @@ export default function Header() {
             />
             <span className="text-white font-bold text-xl">Doce Encanto</span>
           </div>
-        </Link>
+        </Link> */}
 
         {/* Menu Desktop */}
         <nav className="hidden md:flex items-center gap-4">
@@ -60,64 +70,61 @@ export default function Header() {
           </Link>
           <Link
             href="/contato"
-            className="px-3 py-2 rounded-full text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition"
+            className="px-3 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition"
           >
             Contato
           </Link>
-          <Link
-            href="/login"
-            className="px-3 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition"
-          >
-            Login
-          </Link>
 
-          {/* Carrinho Desktop */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="relative p-2 rounded-full hover:bg-pink-100 ml-2">
-                <ShoppingCart className="w-6 h-6 text-pink-600" />
-                <span className="absolute top-1 right-1 w-3 h-3 bg-rose-500 rounded-full"></span>
-              </button>
-            </SheetTrigger>
-
-            <SheetContent side="right" className="w-[90vw] sm:w-[400px]">
-              <SheetHeader>
-                <SheetTitle className="text-pink-600">Seu Carrinho</SheetTitle>
-                <SheetDescription>
-                  Itens adicionados ao seu pedido
-                </SheetDescription>
-              </SheetHeader>
-              <div className="mt-6 flex flex-col gap-4">
-                <div className="flex items-center justify-between border-b pb-2">
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src="/bolo1.jpeg"
-                      alt="Bolo"
-                      width={60}
-                      height={60}
-                      className="rounded-lg"
-                    />
-                    <div>
-                      <p className="font-semibold text-gray-800">
-                        Bolo de Morango
-                      </p>
-                      <p className="text-sm text-gray-500">R$ 45,00</p>
-                    </div>
-                  </div>
-                  <span className="font-bold text-pink-600">1x</span>
-                </div>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="font-semibold text-gray-700">Total:</span>
-                  <span className="font-bold text-pink-600 text-lg">
-                    R$ 45,00
-                  </span>
-                </div>
-                <button className="mt-4 w-full py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg">
-                  Finalizar Pedido
+            {/* Carrinho Desktop */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className="relative p-2 rounded-full hover:bg-pink-100 ml-2">
+                  <ShoppingCart className="w-6 h-6 text-pink-600" />
+                  <span className="absolute top-1 right-1 w-3 h-3 bg-rose-500 rounded-full"></span>
                 </button>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetTrigger>
+
+              <SheetContent side="right" className="w-[90vw] sm:w-[400px]">
+                <SheetHeader>
+                  <SheetTitle className="text-pink-600">
+                    Seu Carrinho
+                  </SheetTitle>
+                  <SheetDescription>
+                    Itens adicionados ao seu pedido
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="mt-6 flex flex-col gap-4">
+                  <div className="flex items-center justify-between border-b pb-2">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/bolo1.jpeg"
+                        alt="Bolo"
+                        width={60}
+                        height={60}
+                        className="rounded-lg"
+                      />
+                      <div>
+                        <p className="font-semibold text-gray-800">
+                          Bolo de Morango
+                        </p>
+                        <p className="text-sm text-gray-500">R$ 45,00</p>
+                      </div>
+                    </div>
+                    <span className="font-bold text-pink-600">1x</span>
+                  </div>
+                  <div className="flex justify-between items-center mt-4">
+                    <span className="font-semibold text-gray-700">Total:</span>
+                    <span className="font-bold text-pink-600 text-lg">
+                      R$ 45,00
+                    </span>
+                  </div>
+                  <button className="mt-4 w-full py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg">
+                    Finalizar Pedido
+                  </button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </nav>
 
         {/* Mobile Buttons */}
@@ -144,7 +151,6 @@ export default function Header() {
                   Itens adicionados ao seu pedido
                 </SheetDescription>
               </SheetHeader>
-              {/* Conteúdo igual ao desktop */}
             </SheetContent>
           </Sheet>
         </div>
