@@ -20,68 +20,8 @@ import Link from "next/link";
 
 export default function MonteSeuBolo() {
   return (
-    <div className="min-h-[calc(100vh-200px)]">
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="relative group">
-            <div className="absolute -inset-2 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
-            <Link href="/">
-              <div className="relative bg-gradient-to-r from-pink-400 to-rose-500 rounded-2xl p-4 shadow-2xl transform group-hover:scale-105 transition-all duration-300">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/logo_amor1.png"
-                    alt="Logo"
-                    width={70}
-                    height={70}
-                    className="p-1 rounded-full"
-                  />
-
-                  <span className="text-white font-bold text-2xl tracking-wide drop-shadow-lg">
-                    Doce Encanto
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          {/* Menu */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/80 backdrop-blur-md rounded-full px-2 py-2 shadow-lg">
-            <Link
-              href="/"
-              className="px-6 py-2 rounded-full text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition-all duration-200 font-medium"
-            >
-              Início
-            </Link>
-            <Link
-              href="/"
-              className="px-6 py-2 rounded-full text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition-all duration-200 font-medium"
-            >
-              Sobre
-            </Link>
-            <Link
-              href="/"
-              className="px-6 py-2 rounded-full text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition-all duration-200 font-medium"
-            >
-              Produtos
-            </Link>
-            <Link
-              href="/monte-seu-bolo"
-              className="px-6 py-2 rounded-full  bg-gradient-to-r from-blue-300 to-blue-200 text-white 
-           hover:from-blue-100 hover:to-blue-200 transition-all duration-200 font-medium shadow-lg"
-            >
-              Monte seu Bolo
-            </Link>
-            <Link
-              href="/"
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition-all duration-200 font-medium shadow-lg"
-            >
-              Contato
-            </Link>
-          </nav>
-        </div>
-      </div>
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-[calc(100vh-200px)] pt-20">
+      <div className="max-w-2xl mx-auto px-6">
         {/* Cabeçalho */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -217,15 +157,6 @@ export default function MonteSeuBolo() {
           </CardContent>
         </Card>
       </div>
-      <footer className="bg-pink-500 text-white py-6 mt-12 w-full">
-        <div className="container mx-auto text-center">
-          <p className="text-xl font-bold">Obrigada por nos visitar!</p>
-          <p>
-            &copy; {new Date().getFullYear()} Doce Encanto. Todos os direitos
-            reservados.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

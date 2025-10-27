@@ -60,9 +60,15 @@ export default function Header() {
           </Link>
           <Link
             href="/contato"
-            className="px-3 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition"
+            className="px-3 py-2 rounded-full text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition"
           >
             Contato
+          </Link>
+          <Link
+            href="/login"
+            className="px-3 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition"
+          >
+            Login
           </Link>
 
           {/* Carrinho Desktop */}
@@ -171,6 +177,9 @@ export default function Header() {
               className="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 transition"
             >
               Contato
+            </Link>
+            <Link href="/login" className="text-gray-700 hover:text-pink-600">
+              Login
             </Link>
           </nav>
         </div>
