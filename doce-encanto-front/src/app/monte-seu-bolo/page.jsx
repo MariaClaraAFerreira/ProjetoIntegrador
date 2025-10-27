@@ -20,7 +20,7 @@ import Link from "next/link";
 
 export default function MonteSeuBolo() {
   return (
-    <div className="min-h-[calc(100vh-200px)] py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[calc(100vh-200px)]">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -217,7 +217,7 @@ export default function MonteSeuBolo() {
           </CardContent>
         </Card>
       </div>
-      <footer className="bg-pink-500 text-white py-6 mt-12">
+      <footer className="bg-pink-500 text-white py-6 mt-12 w-full">
         <div className="container mx-auto text-center">
           <p className="text-xl font-bold">Obrigada por nos visitar!</p>
           <p>
