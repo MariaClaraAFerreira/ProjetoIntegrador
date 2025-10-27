@@ -159,15 +159,6 @@ export default function MonteSeuBolo() {
           </CardContent>
         </Card>
       </div>
-      <footer className="bg-pink-500 text-white py-6 mt-12 w-full">
-        <div className="container mx-auto text-center">
-          <p className="text-xl font-bold">Obrigada por nos visitar!</p>
-          <p>
-            &copy; {new Date().getFullYear()} Doce Encanto. Todos os direitos
-            reservados.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

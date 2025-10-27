@@ -221,6 +221,9 @@ export default function Header() {
             >
               Contato
             </Link>
+            <Link href="/login" className="text-gray-700 hover:text-pink-600">
+              Login
+            </Link>
           </nav>
         </div>
       )}
