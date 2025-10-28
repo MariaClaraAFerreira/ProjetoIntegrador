@@ -102,7 +102,7 @@ export default function Header() {
               </Button>
             </Link>
 
-            <Link href="/cadastro">
+            <Link href="/registro">
               <Button
                 size="sm"
                 className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white shadow-md flex items-center gap-2"
