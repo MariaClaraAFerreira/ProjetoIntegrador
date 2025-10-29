@@ -26,7 +26,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-white shadow-md">
+    <header className="fixed top-0 w-full z-50 bg-white shadow-xl">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo
         <Link href="/" className="flex items-center gap-3">
@@ -43,14 +43,15 @@ export default function Header() {
         </Link> */}
 
         {/* Menu Desktop */}
-        <nav className="hidden md:flex items-center justify-between w-full bg-white shadow-sm px-6 py-3 ml-6 rounded-xl">
+        <nav className="hidden md:flex items-center justify-between w-full bg-[#CDECF9] shadow-xl px-6 py-3 ml-6 rounded-xl">
           {/* Logo e título */}
           <div className="flex items-center gap-3">
             <Image
               src="/logo_amor1.png" // substitua pelo seu logo
               alt="Logo Doce Encanto"
-              width={40}
-              height={40}
+              width={60}
+              height={60}
+              className="rounded-4xl"
             />
             <div className="flex flex-col leading-tight">
               <span className="font-semibold text-lg text-pink-600">

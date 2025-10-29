@@ -3,7 +3,7 @@ import { Heart,Award,User } from 'lucide-react'
 
 export default function Sobre_nos() {
   return (
-     <section className="py-20 bg-gradient-to-b bg-[#CDECF9] to-white">
+     <section className="py-20 ">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-6">Sobre Nós</h2>

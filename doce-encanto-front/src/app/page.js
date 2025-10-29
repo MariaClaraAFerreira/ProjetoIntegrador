@@ -8,8 +8,8 @@ import Carrossel from "./componentes/carrossel";
 
 export default function Home() {
   return (
-    <div className="h-full w-full bg-[#CDECF9] flex-col justify-center items-center ">
-      <div className="">
+    <div className="h-full w-full   bg-gradient-to-b bg-[#CDECF9] to-white flex-col justify-center items-center ">
+      <div className=" ">
         <Header />
       </div>
 
@@ -21,6 +21,10 @@ export default function Home() {
       </div>
       <div className="mt-20">
         <Cardprodutos />
+      </div>
+
+      <div className="bg-[#6B3F2A] w-full h-0.5">
+. 
       </div>
 
       <div className="flex justify-center items-center mt-10"></div>
