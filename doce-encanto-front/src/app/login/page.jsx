@@ -1,46 +1,49 @@
-"use client"
+"use client";
 
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Sparkles, Mail, Lock, LogIn, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-
+import Header from "../componentes/header";
 
 export default function CustomLogin() {
   const [formData, setFormData] = useState({
     email: "",
-    senha: ""
+    senha: "",
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
     // Limpa o erro do campo quando o usuário começa a digitar
     if (errors[field]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [field]: ""
+        [field]: "",
       }));
     }
   };
 
-
   const validateForm = () => {
     const newErrors = {};
-
 
     if (!formData.email.trim()) {
       newErrors.email = "E-mail é obrigatório";
@@ -48,26 +51,23 @@ export default function CustomLogin() {
       newErrors.email = "E-mail inválido";
     }
 
-
     if (!formData.senha) {
       newErrors.senha = "Senha é obrigatória";
     } else if (formData.senha.length < 6) {
       newErrors.senha = "Senha deve ter no mínimo 6 caracteres";
     }
 
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-
   const router = useRouter();
 
   const { login } = useAuth();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     if (!validateForm()) {
       return;
     }
@@ -76,32 +76,33 @@ export default function CustomLogin() {
 
     try {
       const result = await login(formData.email, formData.senha);
-      
+
       if (result.success) {
-        router.push('/');
+        router.push("/");
       } else {
         setErrors({
           ...errors,
-          api: result.error || 'Erro ao fazer login. Por favor, tente novamente.',
+          api:
+            result.error || "Erro ao fazer login. Por favor, tente novamente.",
         });
       }
     } catch (error) {
       setErrors({
         ...errors,
-        api: 'Erro ao conectar com o servidor. Por favor, tente novamente.',
+        api: "Erro ao conectar com o servidor. Por favor, tente novamente.",
       });
     } finally {
       setIsLoading(false);
     }
   };
 
-
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100">
+      <Header />
       {/* Elementos decorativos de fundo */}
       <div className="absolute top-20 left-20 w-64 h-64 bg-pink-300 rounded-full opacity-20 blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-300 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-     
+
       <div className="w-full max-w-md relative z-10">
         {/* Logo e Título */}
         <div className="text-center mb-8">
@@ -114,7 +115,6 @@ export default function CustomLogin() {
           <p className="text-gray-600 mt-2">Bem-vindo de volta!</p>
         </div>
 
-
         {/* Card de Login */}
         <Card className="shadow-2xl border-0 bg-white/90 backdrop-blur-lg">
           <CardHeader className="space-y-1 pb-4">
@@ -125,7 +125,7 @@ export default function CustomLogin() {
               Entre com suas credenciais para acessar sua conta
             </CardDescription>
           </CardHeader>
-         
+
           <CardContent>
             {/* Aviso de demonstração */}
             <Alert className="mb-6 border-blue-200 bg-blue-50">
@@ -135,11 +135,13 @@ export default function CustomLogin() {
               </AlertDescription>
             </Alert>
 
-
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Campo de E-mail */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-700"
+                >
                   E-mail
                 </Label>
                 <div className="relative">
@@ -165,10 +167,12 @@ export default function CustomLogin() {
                 )}
               </div>
 
-
               {/* Campo de Senha */}
               <div className="space-y-2">
-                <Label htmlFor="senha" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="senha"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Senha
                 </Label>
                 <div className="relative">
@@ -194,14 +198,15 @@ export default function CustomLogin() {
                 )}
               </div>
 
-
               {/* Link Esqueceu a senha */}
               <div className="text-right">
-                <a href="#" className="text-sm text-purple-600 hover:text-purple-700 hover:underline transition-colors">
+                <a
+                  href="#"
+                  className="text-sm text-purple-600 hover:text-purple-700 hover:underline transition-colors"
+                >
                   Esqueceu a senha?
                 </a>
               </div>
-
 
               {/* Botão Entrar */}
               <Button
@@ -223,7 +228,6 @@ export default function CustomLogin() {
               </Button>
             </form>
 
-
             {/* Divisor */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
@@ -233,7 +237,6 @@ export default function CustomLogin() {
                 <span className="px-2 bg-white text-gray-500">ou</span>
               </div>
             </div>
-
 
             {/* Link para Registro */}
             <div className="text-center">
@@ -249,7 +252,6 @@ export default function CustomLogin() {
             </div>
           </CardContent>
         </Card>
-
 
         {/* Link para Home */}
         <div className="text-center mt-6">
