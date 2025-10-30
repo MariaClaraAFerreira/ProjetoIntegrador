@@ -33,10 +33,10 @@ export default function Header() {
               className="rounded-4xl"
             />
             <div className="flex flex-col leading-tight">
-              <span className="font-semibold text-lg text-pink-600">
+              <span className="font-semibold text-lg text-pink-600 font-[cursive]">
                 Doce Encanto
               </span>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500 font-medium">
                 Confeitaria Artesanal
               </span>
             </div>
@@ -66,9 +66,9 @@ export default function Header() {
               <Button
                 variant="outline"
                 size="sm"
-                className="border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-400 flex items-center gap-2"
+                className="border-purple-300 text-pink-500 hover:bg-purple-50 hover:border-purple-400 flex items-center gap-2"
               >
-                <LogIn className="w-4 h-4" />
+                <LogIn className="w-4 h-4 text-pink-500" />
                 Login
               </Button>
             </Link>
@@ -76,7 +76,7 @@ export default function Header() {
             <Link href="/registro">
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white shadow-md flex items-center gap-2"
+                className="bg-gradient-to-r bg-pink-500 text-white shadow-md flex items-center gap-2"
               >
                 <UserPlus className="w-4 h-4" />
                 Cadastro
