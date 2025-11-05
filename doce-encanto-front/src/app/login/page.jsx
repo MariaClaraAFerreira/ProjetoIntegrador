@@ -98,7 +98,6 @@ export default function CustomLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100">
-      <Header />
       {/* Elementos decorativos de fundo */}
       <div className="absolute top-20 left-20 w-64 h-64 bg-pink-300 rounded-full opacity-20 blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-300 rounded-full opacity-20 blur-3xl animate-pulse"></div>
@@ -128,12 +127,34 @@ export default function CustomLogin() {
 
           <CardContent>
             {/* Aviso de demonstração */}
-            <Alert className="mb-6 border-blue-200 bg-blue-50">
-              <AlertCircle className="w-4 h-4 text-blue-600" />
-              <AlertDescription className="text-blue-800 text-sm">
-                Esta é uma tela de demonstração visual apenas
-              </AlertDescription>
-            </Alert>
+            <Button
+                          type="button"
+                          className="w-full mb-4 bg-white text-gray-700 font-medium border border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center gap-3 shadow-sm"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 533.5 544.3"
+                            className="w-5 h-5"
+                          >
+                            <path
+                              fill="#4285f4"
+                              d="M533.5 278.4c0-17.4-1.4-34-4.1-50.2H272v95h146.9c-6.3 33.8-25 62.4-53.3 81.5v67h85.9c50.4-46.5 81-114.8 81-193.3z"
+                            />
+                            <path
+                              fill="#34a853"
+                              d="M272 544.3c71.6 0 131.6-23.7 175.5-63.6l-85.9-67c-23.9 16.1-54.5 25.5-89.6 25.5-68.9 0-127.3-46.5-148.2-109.1H35.9v68.4C79.8 480.7 169.4 544.3 272 544.3z"
+                            />
+                            <path
+                              fill="#fbbc04"
+                              d="M123.8 330.1c-10.2-30.5-10.2-63.4 0-93.9V167.8H35.9c-38.3 76.3-38.3 166.4 0 242.7l87.9-68.4z"
+                            />
+                            <path
+                              fill="#ea4335"
+                              d="M272 107.7c39 0 74 13.4 101.5 39.5l76-76C403.6 24.7 343.6 0 272 0 169.4 0 79.8 63.6 35.9 167.8l87.9 68.4C144.7 154.2 203.1 107.7 272 107.7z"
+                            />
+                          </svg>
+                          Entrar com o Google
+                        </Button>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Campo de E-mail */}
