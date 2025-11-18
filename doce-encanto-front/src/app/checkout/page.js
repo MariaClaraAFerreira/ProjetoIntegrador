@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import FinalizarPedido from "./componentes/tabela";
 import Footer from "../componentes/footer";
 import Header from "../componentes/header";
