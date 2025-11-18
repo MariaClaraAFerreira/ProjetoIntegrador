@@ -1,23 +1,23 @@
 import Image from "next/image";
-import Header2 from "./componentes/header";
+
 import FinalizarPedido from "./componentes/tabela";
 import Footer from "../componentes/footer";
-
+import Header from "../componentes/header";
 
 export default function Home() {
   return (
     <div className="h-full   w-full   bg-[#CDECF9] flex-col justify-center items-center ">
       <div className=" ">
-        <Header2 />
+        <Header />
       </div>
 
       <div className="mt-20">
-        <FinalizarPedido/>
+        <FinalizarPedido />
       </div>
 
-        <div>
-            <Footer/>
-        </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
