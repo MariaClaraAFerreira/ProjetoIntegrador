@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
 import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext"; // ⬅ AQUI!
@@ -11,6 +16,22 @@ export const metadata = {
     apple: "/senac-512x512.png",
   },
 };
+
+import "./globals.css";
+
+export const metadata = {
+  title: "Meu App PWA",
+  description: "Aplicativo PWA com Next.js App Router",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/senac-192x192.png",
+    apple: "/senac-512x512.png",
+  },
+};
+
+
+
+
 
 export default function RootLayout({ children }) {
   return (
