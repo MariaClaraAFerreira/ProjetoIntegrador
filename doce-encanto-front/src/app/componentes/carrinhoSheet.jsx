@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useCart } from "@/app/context/CartContext";
 import {
   Sheet,
   SheetContent,
@@ -14,20 +14,14 @@ import { ShoppingCart, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 
 export default function SimpleCartSheet() {
-  const [cartItems] = useState([
-    { id: 1, name: "Bolo de Morango", price: 45, quantity: 1 },
-    { id: 2, name: "Bolo de Chocolate", price: 50, quantity: 2 },
-  ]);
-
-  const getCartTotal = () =>
-    cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const { cart, total, removeFromCart } = useCart();
 
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button>
           <ShoppingCart className="w-5 h-5 mr-2" />
-          Carrinho ({cartItems.length})
+          Carrinho ({cart.length})
         </Button>
       </SheetTrigger>
 
@@ -40,10 +34,10 @@ export default function SimpleCartSheet() {
         </SheetHeader>
 
         <div className="mt-4 space-y-4 flex-1 overflow-y-auto">
-          {cartItems.length === 0 ? (
+          {cart.length === 0 ? (
             <p>Seu carrinho está vazio.</p>
           ) : (
-            cartItems.map((item) => (
+            cart.map((item) => (
               <div
                 key={item.id}
                 className="flex justify-between items-center border-b pb-2"
@@ -54,15 +48,25 @@ export default function SimpleCartSheet() {
                     R$ {item.price} x {item.quantity}
                   </p>
                 </div>
-                <p className="font-bold">R$ {item.price * item.quantity}</p>
+
+                <div className="flex items-center gap-3">
+                  <p className="font-bold">R$ {item.price * item.quantity}</p>
+
+                  <button
+                    className="text-red-500 text-sm"
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    remover
+                  </button>
+                </div>
               </div>
             ))
           )}
 
-          {cartItems.length > 0 && (
+          {cart.length > 0 && (
             <div className="flex justify-between mt-4 font-bold">
               <span>Total:</span>
-              <span>R$ {getCartTotal()}</span>
+              <span>R$ {total}</span>
             </div>
           )}
         </div>
@@ -71,7 +75,7 @@ export default function SimpleCartSheet() {
           <Link
             href="/checkout"
             className={`w-full mt-4 px-4 py-2 text-center rounded text-white bg-pink-500 hover:bg-pink-600 transition-colors ${
-              cartItems.length === 0 ? "opacity-50 pointer-events-none" : ""
+              cart.length === 0 ? "opacity-50 pointer-events-none" : ""
             }`}
           >
             Finalizar Pedido

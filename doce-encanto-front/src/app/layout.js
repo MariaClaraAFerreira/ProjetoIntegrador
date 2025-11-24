@@ -1,7 +1,21 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
 import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext"; // ⬅ AQUI!
+
+export const metadata = {
+  title: "Meu App PWA",
+  description: "Aplicativo PWA com Next.js App Router",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/senac-192x192.png",
+    apple: "/senac-512x512.png",
+  },
+};
 
 import "./globals.css";
 
@@ -24,7 +38,11 @@ export default function RootLayout({ children }) {
     <html lang="pt-br" className="bg-[#CDECF9]">
       <body className="h-full w-full font-sans text-gray-900 antialiased">
         <AuthProvider>
-          {children}
+          <CartProvider>
+            {" "}
+            {/* ⬅ ENVOLVE TUDO */}
+            {children}
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

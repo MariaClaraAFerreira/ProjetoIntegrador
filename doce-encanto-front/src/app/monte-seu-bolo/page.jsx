@@ -41,14 +41,14 @@ export default function MonteSeuBolo() {
             <CardTitle className="flex items-center gap-2 text-xl"></CardTitle>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
-            {/* Produto Base */}
+            {/* Massa */}
             <div className="space-y-2">
               <Label className="text-sm font-medium text-gray-700">
-                Escolha o Bolo Base
+                Escolha a massa do seu bolo
               </Label>
               <Select>
                 <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
-                  <SelectValue placeholder="Selecione um bolo base" />
+                  <SelectValue placeholder="Selecione uma massa" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="1">Bolo de Chocolate</SelectItem>
@@ -58,36 +58,38 @@ export default function MonteSeuBolo() {
               </Select>
             </div>
 
-            {/* Massa */}
-            <div className="space-y-2">
-              <Label
-                htmlFor="massa"
-                className="text-sm font-medium text-gray-700"
-              >
-                Tipo de Massa
-              </Label>
-              <Input
-                id="massa"
-                type="text"
-                placeholder="Ex: Massa de baunilha"
-                className="h-12 border-purple-200 focus:border-purple-400 focus:ring-purple-400"
-              />
-            </div>
-
             {/* Recheio */}
             <div className="space-y-2">
-              <Label
-                htmlFor="recheio"
-                className="text-sm font-medium text-gray-700"
-              >
-                Recheio
+              <Label className="text-sm font-medium text-gray-700">
+                Escolha o recheio do seu bolo
               </Label>
-              <Input
-                id="recheio"
-                type="text"
-                placeholder="Ex: Doce de leite com coco"
-                className="h-12 border-purple-200 focus:border-purple-400 focus:ring-purple-400"
-              />
+              <Select>
+                <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
+                  <SelectValue placeholder="Selecione um recheio" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">Bolo de Chocolate</SelectItem>
+                  <SelectItem value="2">Bolo de Baunilha</SelectItem>
+                  <SelectItem value="3">Bolo Red Velvet</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Cobertura */}
+            <Label className="text-sm font-medium text-gray-700">
+              Escolha a cobertura do seu bolo
+            </Label>
+            <div className="space-y-2">
+              <Select>
+                <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
+                  <SelectValue placeholder="Selecione uma cobertura" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">Bolo de Chocolate</SelectItem>
+                  <SelectItem value="2">Bolo de Baunilha</SelectItem>
+                  <SelectItem value="3">Bolo Red Velvet</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Cobertura */}
@@ -96,12 +98,12 @@ export default function MonteSeuBolo() {
                 htmlFor="cobertura"
                 className="text-sm font-medium text-gray-700"
               >
-                Cobertura
+                Descreva a decoração do seu bolo
               </Label>
               <Input
                 id="cobertura"
                 type="text"
-                placeholder="Ex: Chantilly com morangos"
+                placeholder="Ex: flores vermelhas, confeitos coloridos..."
                 className="h-12 border-purple-200 focus:border-purple-400 focus:ring-purple-400"
               />
             </div>
