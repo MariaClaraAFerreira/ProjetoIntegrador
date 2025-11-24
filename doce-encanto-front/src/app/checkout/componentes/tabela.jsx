@@ -70,7 +70,7 @@ export default function FinalizarPedido() {
 
     // 🔥 Payload correto para o seu backend Node + Prisma
     const pedidoPayload = {
-      clienteId: 1, // ajuste conforme seu backend
+      clienteId: 1,
       valorTotal: total,
       status: "pendente",
       itens: cart.map((item) => ({
@@ -78,17 +78,15 @@ export default function FinalizarPedido() {
         quantidade: item.quantity,
         precoUnitario: item.price,
       })),
-      endereco: {
-        cep,
-        rua,
-        bairro,
-        cidade,
-        uf,
-      },
+      cep,
+      rua,
+      bairro,
+      cidade,
+      uf,
     };
 
     try {
-      const response = await fetch("http://localhost:3001/pedidos", {
+      const response = await fetch("/api/pedidos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(pedidoPayload),

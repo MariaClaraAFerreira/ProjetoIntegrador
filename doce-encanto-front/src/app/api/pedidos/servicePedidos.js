@@ -18,6 +18,14 @@ export async function createPedido(data) {
       clienteId: data.clienteId,
       valorTotal: data.valorTotal,
       status: data.status ?? "pendente",
+
+      // 🟢 Campos de endereço (agora vai salvar!)
+      cep: data.cep,
+      rua: data.rua,
+      bairro: data.bairro,
+      cidade: data.cidade,
+      uf: data.uf,
+
       itens: {
         create: data.itens.map((item) => ({
           produtoId: item.produtoId,

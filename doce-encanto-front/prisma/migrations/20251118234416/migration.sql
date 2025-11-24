@@ -26,6 +26,11 @@ CREATE TABLE "Pedido" (
     "dataPedido" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "status" TEXT NOT NULL DEFAULT 'pendente',
     "valorTotal" REAL NOT NULL,
+    "cep" TEXT NOT NULL,
+    "rua" TEXT NOT NULL,
+    "bairro" TEXT NOT NULL,
+    "cidade" TEXT NOT NULL,
+    "uf" TEXT NOT NULL,
     CONSTRAINT "Pedido_clienteId_fkey" FOREIGN KEY ("clienteId") REFERENCES "Cliente" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
