@@ -1,7 +1,23 @@
-"use client"
+
 
 import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
+
+import "./globals.css";
+
+export const metadata = {
+  title: "Meu App PWA",
+  description: "Aplicativo PWA com Next.js App Router",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/senac-192x192.png",
+    apple: "/senac-512x512.png",
+  },
+};
+
+
+
+
 
 export default function RootLayout({ children }) {
   return (
