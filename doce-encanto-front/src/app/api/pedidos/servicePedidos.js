@@ -2,13 +2,29 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function getPedidos() {
-  return prisma.pedido.findMany({ include: { cliente: true, itens: true } });
+  return prisma.pedido.findMany({
+    include: {
+      cliente: true,
+      itens: {
+        include: {
+          produto: true,
+        },
+      },
+    },
+  });
 }
 
 export async function getPedidoById(id) {
   return prisma.pedido.findUnique({
     where: { id: Number(id) },
-    include: { cliente: true, itens: true },
+    include: {
+      cliente: true,
+      itens: {
+        include: {
+          produto: true, // ← necessário
+        },
+      },
+    },
   });
 }
 
@@ -19,7 +35,6 @@ export async function createPedido(data) {
       valorTotal: data.valorTotal,
       status: data.status ?? "pendente",
 
-      // 🟢 Campos de endereço (agora vai salvar!)
       cep: data.cep,
       rua: data.rua,
       bairro: data.bairro,
@@ -35,7 +50,12 @@ export async function createPedido(data) {
       },
     },
     include: {
-      itens: true,
+      cliente: true,
+      itens: {
+        include: {
+          produto: true,
+        },
+      },
     },
   });
 }
