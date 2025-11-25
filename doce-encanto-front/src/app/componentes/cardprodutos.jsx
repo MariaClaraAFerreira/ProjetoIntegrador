@@ -19,37 +19,123 @@ export default function CardProdutos() {
   const produtos = [
     {
       id: 1,
-      nome: "Bolo de Chocolate",
+      nome: "Bolo Red Velved",
       preco: 45.9,
       imagem: "bolo1.jpeg",
       categoria: "bolos",
     },
     {
       id: 2,
-      nome: "Torta de Limão",
+      nome: "bolo 1",
       preco: 39.9,
-      imagem: "bolo1.jpeg",
+
+      imagem: "bolo2.jpeg",
+
       categoria: "tortas",
     },
     {
       id: 3,
-      nome: "Brigadeiro Gourmet",
+      nome: "Bolo 2",
       preco: 2.5,
-      imagem: "bombom.jpeg",
+
+      imagem: "bolo3.jpeg",
+
       categoria: "doces",
     },
     {
       id: 4,
-      nome: "Cupcake de Baunilha",
+      nome: "Bolo 3",
       preco: 7.9,
-      imagem: "cupcake.jpeg",
+
+      imagem: "bolo4.jpeg",
+
       categoria: "cupcakes",
     },
     {
       id: 5,
-      nome: "Bolo Red Velvet",
+      nome: "Bolo 4",
       preco: 55.9,
-      imagem: "bolo1.jpeg",
+      imagem: "bolo5.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 6,
+      nome: "Bolo 5",
+      preco: 55.9,
+      imagem: "bolo6.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 7,
+      nome: "Bolo 6",
+      preco: 55.9,
+      imagem: "bolo7.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 8,
+      nome: "Bolo 7",
+      preco: 55.9,
+      imagem: "bolo8.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 9,
+      nome: "Bolo 8",
+      preco: 55.9,
+      imagem: "bolo9.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 10,
+      nome: "Bolo 9",
+      preco: 55.9,
+      imagem: "bolo10.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 11,
+      nome: "Bolo 10",
+      preco: 55.9,
+      imagem: "bolo11.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 12,
+      nome: "Bolo 12",
+      preco: 55.9,
+      imagem: "bolo12.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 13,
+      nome: "Bolo 13",
+      preco: 55.9,
+      imagem: "bolo13.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 14,
+      nome: "Cup Cake 1",
+      preco: 55.9,
+      imagem: "cupcake1.jpeg",
+      categoria: "bolos",
+    },
+
+    {
+      id: 15,
+      nome: "Bombom1",
+      preco: 55.9,
+      imagem: "bombom1.jpeg",
       categoria: "bolos",
     },
   ];

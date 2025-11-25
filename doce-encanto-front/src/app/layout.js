@@ -2,6 +2,8 @@ import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext"; // ⬅ AQUI!
 
+import "./globals.css";
+
 export const metadata = {
   title: "Meu App PWA",
   description: "Aplicativo PWA com Next.js App Router",
