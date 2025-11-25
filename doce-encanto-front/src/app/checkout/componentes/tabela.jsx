@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
 
@@ -16,6 +16,16 @@ export default function FinalizarPedido() {
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
   const [uf, setUf] = useState("");
+
+  // 🆕 PARA PEGAR O PEDIDO PERSONALIZADO DO LOCALSTORAGE
+  const [pedidoPersonalizado, setPedidoPersonalizado] = useState(null);
+
+  useEffect(() => {
+    const data = localStorage.getItem("pedido-personalizado");
+    if (data) {
+      setPedidoPersonalizado(JSON.parse(data));
+    }
+  }, []);
 
   // 👉 Máscara + busca automática
   const handleCep = (e) => {
@@ -56,10 +66,22 @@ export default function FinalizarPedido() {
     }
   };
 
-  // 🧾 Finalizar pedido (VERSÃO PARA BACKEND SEPARADO)
+  // 🧾 FINALIZAR PEDIDO
   const finalizarPedido = async () => {
-    if (cart.length === 0) {
-      alert("Carrinho vazio!");
+    // Escolhe de onde vem o pedido
+    const itensFinal =
+      pedidoPersonalizado?.itens && pedidoPersonalizado.itens.length > 0
+        ? pedidoPersonalizado.itens
+        : cart.map((item) => ({
+            produtoId: item.id,
+            quantidade: item.quantity,
+            precoUnitario: item.price,
+          }));
+
+    const totalFinal = pedidoPersonalizado?.valorTotal ?? total;
+
+    if (!itensFinal || itensFinal.length === 0) {
+      alert("Carrinho vazio ou pedido inválido!");
       return;
     }
 
@@ -68,16 +90,12 @@ export default function FinalizarPedido() {
       return;
     }
 
-    // 🔥 Payload correto para o seu backend Node + Prisma
+    // 🔥 payload final enviado ao backend
     const pedidoPayload = {
       clienteId: 1,
-      valorTotal: total,
+      valorTotal: totalFinal,
       status: "pendente",
-      itens: cart.map((item) => ({
-        produtoId: item.id,
-        quantidade: item.quantity,
-        precoUnitario: item.price,
-      })),
+      itens: itensFinal,
       cep,
       rua,
       bairro,
@@ -93,15 +111,16 @@ export default function FinalizarPedido() {
       });
 
       if (!response.ok) {
-        const err = await response.text();
-        console.error("ERRO DO BACKEND:", err);
+        console.error("ERRO DO BACKEND:", await response.text());
         alert("Erro ao criar pedido!");
         return;
       }
 
       const pedidoCriado = await response.json();
 
+      // limpa carrinho e bolo personalizado
       clearCart();
+      localStorage.removeItem("pedido-personalizado");
 
       router.push(`/pedido-confirmado?id=${pedidoCriado.id}`);
     } catch (error) {
@@ -194,7 +213,13 @@ export default function FinalizarPedido() {
         <div className="border-t border-gray-200 pt-4">
           <h2 className="font-semibold text-lg mb-2">Resumo do Pedido</h2>
 
-          {cart.length === 0 ? (
+          {pedidoPersonalizado ? (
+            <ul className="space-y-1 mb-3">
+              <li>Sabor: {pedidoPersonalizado?.itens[0]?.produtoId}</li>
+              <li>Recheio: {pedidoPersonalizado?.itens[1]?.produtoId}</li>
+              <li>Cobertura: {pedidoPersonalizado?.itens[2]?.produtoId}</li>
+            </ul>
+          ) : cart.length === 0 ? (
             <p className="text-gray-500">Seu carrinho está vazio.</p>
           ) : (
             <ul className="space-y-1 mb-3">
@@ -211,7 +236,9 @@ export default function FinalizarPedido() {
 
           <div className="flex justify-between font-semibold text-lg">
             <span>Total:</span>
-            <span className="text-pink-600">R$ {total.toFixed(2)}</span>
+            <span className="text-pink-600">
+              R$ {(pedidoPersonalizado?.valorTotal ?? total).toFixed(2)}
+            </span>
           </div>
         </div>
 

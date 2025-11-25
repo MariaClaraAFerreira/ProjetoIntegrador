@@ -1,166 +1,158 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Cake, Heart, Calculator, DollarSign } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-import Link from "next/link";
-import Header from "../componentes/header";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function MonteSeuBolo() {
+  const router = useRouter();
+
+  const [sabores, setSabores] = useState([]);
+  const [recheios, setRecheios] = useState([]);
+  const [coberturas, setCoberturas] = useState([]);
+
+  const [saborSelecionado, setSaborSelecionado] = useState(null);
+  const [recheioSelecionado, setRecheioSelecionado] = useState(null);
+  const [coberturaSelecionada, setCoberturaSelecionada] = useState(null);
+
+  const [preco, setPreco] = useState(0);
+
+  // Carrega produtos da API
+  useEffect(() => {
+    async function loadProdutos() {
+      try {
+        const res = await fetch("/api/produtos");
+        const data = await res.json();
+
+        setSabores(data.filter((p) => p.categoria === "sabor"));
+        setRecheios(data.filter((p) => p.categoria === "recheio"));
+        setCoberturas(data.filter((p) => p.categoria === "cobertura"));
+      } catch (err) {
+        console.error("Erro ao carregar produtos:", err);
+      }
+    }
+
+    loadProdutos();
+  }, []);
+
+  // Atualiza preço total
+  useEffect(() => {
+    let total = 0;
+    if (saborSelecionado) total += saborSelecionado.preco;
+    if (recheioSelecionado) total += recheioSelecionado.preco;
+    if (coberturaSelecionada) total += coberturaSelecionada.preco;
+    setPreco(total);
+  }, [saborSelecionado, recheioSelecionado, coberturaSelecionada]);
+
+  // Salvar e ir para checkout
+  function finalizarBolo() {
+    if (!saborSelecionado || !recheioSelecionado || !coberturaSelecionada) {
+      alert("Escolha sabor, recheio e cobertura.");
+      return;
+    }
+
+    const bolo = {
+      clienteId: 1, // pode trocar pelo cliente logado
+      valorTotal: preco,
+      itens: [
+        {
+          produtoId: saborSelecionado.id,
+          quantidade: 1,
+          precoUnitario: saborSelecionado.preco,
+        },
+        {
+          produtoId: recheioSelecionado.id,
+          quantidade: 1,
+          precoUnitario: recheioSelecionado.preco,
+        },
+        {
+          produtoId: coberturaSelecionada.id,
+          quantidade: 1,
+          precoUnitario: coberturaSelecionada.preco,
+        },
+      ],
+    };
+
+    localStorage.setItem("pedido-personalizado", JSON.stringify(bolo));
+
+    router.push("/checkout");
+  }
+
   return (
-    <div className="min-h-[calc(100vh-200px)]">
-      <Header />
-      <div className="max-w-2xl mx-auto bg-white/70 backdrop-blur-sm p-8 mt-30 mb-12 rounded-lg shadow-lg">
-        {/* Cabeçalho */}
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Cake className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-            Monte seu Bolo
-          </h1>
-          <p className="text-gray-600">Personalize seu bolo dos sonhos</p>
+    <div className="max-w-xl mx-auto p-4">
+      <h1 className="text-2xl font-bold text-center mb-6">Monte Seu Bolo</h1>
+
+      {/* SABOR */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold mb-2">Sabor</h2>
+        <div className="grid grid-cols-2 gap-3">
+          {sabores.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => setSaborSelecionado(s)}
+              className={`p-3 rounded border ${
+                saborSelecionado?.id === s.id
+                  ? "bg-pink-300 border-pink-500"
+                  : "bg-white"
+              }`}
+            >
+              {s.nome} — R$ {s.preco.toFixed(2)}
+            </button>
+          ))}
         </div>
-
-        {/* Card do formulário */}
-        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-purple-100">
-            <CardTitle className="flex items-center gap-2 text-xl"></CardTitle>
-          </CardHeader>
-          <CardContent className="p-6 space-y-6">
-            {/* Massa */}
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-gray-700">
-                Escolha a massa do seu bolo
-              </Label>
-              <Select>
-                <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
-                  <SelectValue placeholder="Selecione uma massa" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">Bolo de Chocolate</SelectItem>
-                  <SelectItem value="2">Bolo de Baunilha</SelectItem>
-                  <SelectItem value="3">Bolo Red Velvet</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Recheio */}
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-gray-700">
-                Escolha o recheio do seu bolo
-              </Label>
-              <Select>
-                <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
-                  <SelectValue placeholder="Selecione um recheio" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">Bolo de Chocolate</SelectItem>
-                  <SelectItem value="2">Bolo de Baunilha</SelectItem>
-                  <SelectItem value="3">Bolo Red Velvet</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Cobertura */}
-            <Label className="text-sm font-medium text-gray-700">
-              Escolha a cobertura do seu bolo
-            </Label>
-            <div className="space-y-2">
-              <Select>
-                <SelectTrigger className="h-12 border-purple-200 focus:border-purple-400">
-                  <SelectValue placeholder="Selecione uma cobertura" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">Bolo de Chocolate</SelectItem>
-                  <SelectItem value="2">Bolo de Baunilha</SelectItem>
-                  <SelectItem value="3">Bolo Red Velvet</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Cobertura */}
-            <div className="space-y-2">
-              <Label
-                htmlFor="cobertura"
-                className="text-sm font-medium text-gray-700"
-              >
-                Descreva a decoração do seu bolo
-              </Label>
-              <Input
-                id="cobertura"
-                type="text"
-                placeholder="Ex: flores vermelhas, confeitos coloridos..."
-                className="h-12 border-purple-200 focus:border-purple-400 focus:ring-purple-400"
-              />
-            </div>
-
-            {/* Intolerante à lactose */}
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
-              <div className="flex items-center gap-3">
-                <Heart className="w-5 h-5 text-orange-500" />
-                <div>
-                  <Label className="text-sm font-medium text-gray-700">
-                    Intolerante à lactose
-                  </Label>
-                  <p className="text-xs text-gray-500">
-                    Versão sem lactose (+25% no valor)
-                  </p>
-                </div>
-              </div>
-              <Switch />
-            </div>
-
-            {/* Botão */}
-            <Button className="w-full h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
-              <div className="flex items-center gap-2">
-                <Calculator className="w-5 h-5" />
-                Calcular Preço
-              </div>
-            </Button>
-
-            {/* Resultado do preço (estático) */}
-            <div className="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <DollarSign className="w-6 h-6 text-green-600" />
-                  <span className="text-lg font-semibold text-gray-700">
-                    Preço Final
-                  </span>
-                </div>
-                <div className="text-3xl font-bold text-green-600 mb-2">
-                  R$ 0,00
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <Badge
-                    variant="outline"
-                    className="bg-yellow-100 text-yellow-800 border-yellow-300"
-                  >
-                    <Heart className="w-3 h-3 mr-1" />
-                    Sem lactose (+25%)
-                  </Badge>
-                  <span className="text-sm text-gray-500">
-                    Preço base: R$ 0,00
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
+
+      {/* RECHEIO */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold mb-2">Recheio</h2>
+        <div className="grid grid-cols-2 gap-3">
+          {recheios.map((r) => (
+            <button
+              key={r.id}
+              onClick={() => setRecheioSelecionado(r)}
+              className={`p-3 rounded border ${
+                recheioSelecionado?.id === r.id
+                  ? "bg-pink-300 border-pink-500"
+                  : "bg-white"
+              }`}
+            >
+              {r.nome} — R$ {r.preco.toFixed(2)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* COBERTURA */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold mb-2">Cobertura</h2>
+        <div className="grid grid-cols-2 gap-3">
+          {coberturas.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setCoberturaSelecionada(c)}
+              className={`p-3 rounded border ${
+                coberturaSelecionada?.id === c.id
+                  ? "bg-pink-300 border-pink-500"
+                  : "bg-white"
+              }`}
+            >
+              {c.nome} — R$ {c.preco.toFixed(2)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* TOTAL */}
+      <div className="text-center text-xl font-bold mb-6">
+        Total: R$ {preco.toFixed(2)}
+      </div>
+
+      {/* BOTÃO FINALIZAR */}
+      <button
+        onClick={finalizarBolo}
+        className="w-full bg-pink-600 text-white p-4 rounded-lg text-lg font-semibold"
+      >
+        Finalizar Pedido
+      </button>
     </div>
   );
 }
