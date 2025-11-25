@@ -1,12 +1,19 @@
-<<<<<<< HEAD
-import withPWA from "next-pwa";
-=======
 // next.config.mjs
+import withPWA from "next-pwa";
 import WorkboxPlugin from "workbox-webpack-plugin";
 
 const isProd = process.env.NODE_ENV === "production";
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "blobs.vercel.com",
+      },
+    ],
+  },
   webpack: (config, { isServer }) => {
     // Só aplica no client e em produção
     if (!isServer && isProd) {
@@ -21,25 +28,10 @@ const nextConfig = {
     return config;
   },
 };
->>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "blobs.vercel.com",
-            },
-        ],
-    },
-};
 
 // Configuração do PWA
-const withPWAConfig = withPWA({
-    dest: "public",
-    register: true,
-    skipWaiting: true,
+export default withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
 })(nextConfig);
-
-export default withPWAConfig;

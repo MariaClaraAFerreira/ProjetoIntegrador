@@ -28,39 +28,27 @@ export default function CardProdutos() {
       id: 2,
       nome: "bolo 1",
       preco: 39.9,
-<<<<<<< HEAD
 
       imagem: "bolo2.jpeg",
 
-=======
-      imagem: "bolo1.jpeg",
->>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
       categoria: "tortas",
     },
     {
       id: 3,
       nome: "Bolo 2",
       preco: 2.5,
-<<<<<<< HEAD
 
       imagem: "bolo3.jpeg",
 
-=======
-      imagem: "bombom.jpeg",
->>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
       categoria: "doces",
     },
     {
       id: 4,
       nome: "Bolo 3",
       preco: 7.9,
-<<<<<<< HEAD
 
       imagem: "bolo4.jpeg",
 
-=======
-      imagem: "cupcake.jpeg",
->>>>>>> b6e4e758da4856ed257af723d5ea551129bef690
       categoria: "cupcakes",
     },
     {
@@ -119,7 +107,6 @@ export default function CardProdutos() {
       categoria: "bolos",
     },
 
-
     {
       id: 12,
       nome: "Bolo 12",
@@ -136,8 +123,6 @@ export default function CardProdutos() {
       categoria: "bolos",
     },
 
-    
-
     {
       id: 14,
       nome: "Cup Cake 1",
@@ -147,14 +132,12 @@ export default function CardProdutos() {
     },
 
     {
-      id: 15 ,
+      id: 15,
       nome: "Bombom1",
       preco: 55.9,
       imagem: "bombom1.jpeg",
       categoria: "bolos",
     },
-
-
   ];
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("todas");
