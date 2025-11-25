@@ -1,39 +1,43 @@
-"use client"
+"use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { createContext, useContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [cliente, setCliente] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Verificar se existe cliente logado ao carregar o app
   useEffect(() => {
-    checkUser();
+    checkCliente();
   }, []);
 
-  const checkUser = async () => {
+  const checkCliente = async () => {
     try {
-      const response = await fetch('/api/auth/me');
+      const response = await fetch("/api/auth/me", {
+        method: "GET",
+      });
+
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user);
+        setCliente(data.cliente);
       }
     } catch (error) {
-      console.error('Erro ao verificar usuário:', error);
+      console.error("Erro ao verificar cliente:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const login = async (email, password) => {
+  const login = async (email, senha) => {
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha }),
       });
 
       const data = await response.json();
@@ -42,7 +46,9 @@ export function AuthProvider({ children }) {
         throw new Error(data.message);
       }
 
-      await checkUser();
+      // Atualiza contexto após login
+      await checkCliente();
+
       return { success: true };
     } catch (error) {
       return { success: false, error: error.message };
@@ -51,20 +57,20 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      setUser(null);
-      router.push('/login');
+      await fetch("/api/auth/logout", { method: "POST" });
+      setCliente(null);
+      router.push("/login");
     } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+      console.error("Erro ao fazer logout:", error);
     }
   };
 
-  const register = async (fullName, email, password) => {
+  const register = async (nome_completo, email, senha) => {
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, email, password }),
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome_completo, email, senha }),
       });
 
       const data = await response.json();
@@ -80,7 +86,15 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, register }}>
+    <AuthContext.Provider
+      value={{
+        cliente,
+        loading,
+        login,
+        logout,
+        register,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -89,7 +103,7 @@ export function AuthProvider({ children }) {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+    throw new Error("useAuth deve ser usado dentro de um AuthProvider");
   }
   return context;
 };
