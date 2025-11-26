@@ -1,6 +1,5 @@
 // next.config.mjs
 import withPWA from "next-pwa";
-import WorkboxPlugin from "workbox-webpack-plugin";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -14,22 +13,9 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config, { isServer }) => {
-    // Só aplica no client e em produção
-    if (!isServer && isProd) {
-      config.plugins.push(
-        new WorkboxPlugin.GenerateSW({
-          clientsClaim: true,
-          skipWaiting: true,
-          maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB
-        })
-      );
-    }
-    return config;
-  },
 };
 
-// Configuração do PWA
+// Configuração do PWA (next-pwa já cuida do service worker)
 export default withPWA({
   dest: "public",
   register: true,
