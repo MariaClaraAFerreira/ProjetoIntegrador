@@ -1,39 +1,40 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const cookieStore = await cookies(); // ✅ OBRIGATÓRIO
-    const token = cookieStore.get('session');
+    // AGORA COOKIES É ASSÍNCRONO
+    const cookieStore = await cookies();
+    const session = cookieStore.get("session");
 
-    if (!token) {
+    if (!session) {
       return NextResponse.json(
-        { message: 'Não autorizado' },
+        { message: "Não autenticado" },
         { status: 401 }
       );
     }
 
-    // Valide o token com seu backend
-    const response = await fetch('https://sua-api.com/auth/me', {
-      headers: {
-        Authorization: `Bearer ${token.value}`,
-      },
+    const cliente = await prisma.cliente.findUnique({
+      where: { id: Number(session.value) },
+      select: { id: true, nome: true, email: true },
     });
 
-    if (!response.ok) {
+    if (!cliente) {
       return NextResponse.json(
-        { message: 'Sessão inválida' },
-        { status: 401 }
+        { message: "Cliente não encontrado" },
+        { status: 404 }
       );
     }
 
-    const data = await response.json();
-    return NextResponse.json({ user: data.user });
-
-  } catch (error) {
-    console.error('Erro ao verificar usuário:', error);
     return NextResponse.json(
-      { message: 'Erro interno do servidor' },
+      { cliente },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Erro em /api/auth/me:", error);
+    return NextResponse.json(
+      { message: "Erro interno do servidor" },
       { status: 500 }
     );
   }
