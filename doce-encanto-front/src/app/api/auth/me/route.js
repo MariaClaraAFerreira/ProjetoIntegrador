@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // ✅ OBRIGATÓRIO
     const token = cookieStore.get('session');
 
     if (!token) {
@@ -13,10 +13,10 @@ export async function GET() {
       );
     }
 
-    // Aqui você deve validar o token com seu backend
+    // Valide o token com seu backend
     const response = await fetch('https://sua-api.com/auth/me', {
       headers: {
-        'Authorization': `Bearer ${token.value}`,
+        Authorization: `Bearer ${token.value}`,
       },
     });
 
@@ -29,7 +29,7 @@ export async function GET() {
 
     const data = await response.json();
     return NextResponse.json({ user: data.user });
-    
+
   } catch (error) {
     console.error('Erro ao verificar usuário:', error);
     return NextResponse.json(
