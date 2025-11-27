@@ -1,5 +1,5 @@
 // next.config.mjs
-import withPWA from "next-pwa";
+
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -15,9 +15,4 @@ const nextConfig = {
   },
 };
 
-// Configuração do PWA (next-pwa já cuida do service worker)
-export default withPWA({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-})(nextConfig);
+
