@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 
 export async function POST(request) {
   try {
@@ -17,14 +18,17 @@ export async function POST(request) {
       );
     }
 
+    const hash = await bcrypt.hash(senha, 10);
+
     // Cria cliente
     const newCliente = await prisma.cliente.create({
       data: {
         nome: nome_completo,
         email,
-        senha, // depois você pode colocar hash (bcrypt)
+        senha: hash,
       },
     });
+
 
     return NextResponse.json(
       { message: "Conta criada com sucesso", cliente: newCliente },
