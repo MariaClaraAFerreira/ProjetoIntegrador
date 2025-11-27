@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
+import { showOrderSentToast } from "./SendOrderToast"; // ⬅ TOAST AQUI
 
 export default function FinalizarPedido() {
   const { cart, total, clearCart } = useCart();
@@ -17,7 +18,7 @@ export default function FinalizarPedido() {
   const [cidade, setCidade] = useState("");
   const [uf, setUf] = useState("");
 
-  // 🆕 PARA PEGAR O PEDIDO PERSONALIZADO DO LOCALSTORAGE
+  // Pedido personalizado
   const [pedidoPersonalizado, setPedidoPersonalizado] = useState(null);
 
   useEffect(() => {
@@ -27,30 +28,21 @@ export default function FinalizarPedido() {
     }
   }, []);
 
-  // 👉 Máscara + busca automática
+  // CEP com máscara + busca automática
   const handleCep = (e) => {
     let value = e.target.value.replace(/\D/g, "");
-
     if (value.length > 8) value = value.substring(0, 8);
-
     value = value.replace(/(\d{5})(\d)/, "$1-$2");
 
     setCep(value);
-
-    if (value.length === 9) {
-      buscarCEP(value);
-    }
+    if (value.length === 9) buscarCEP(value);
   };
 
-  // 🔍 ViaCEP
   const buscarCEP = async (cepFormatado) => {
     const cepLimpo = cepFormatado.replace(/\D/g, "");
-
     try {
-      const response = await fetch(
-        `https://viacep.com.br/ws/${cepLimpo}/json/`
-      );
-      const data = await response.json();
+      const res = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+      const data = await res.json();
 
       if (data.erro) {
         alert("CEP não encontrado!");
@@ -61,16 +53,54 @@ export default function FinalizarPedido() {
       setBairro(data.bairro || "");
       setCidade(data.localidade || "");
       setUf(data.uf || "");
-    } catch (error) {
+    } catch {
       alert("Erro ao buscar CEP!");
     }
   };
 
-  // 🧾 FINALIZAR PEDIDO
+  // ============================================
+  // WHATSAPP – Envia a mensagem automaticamente
+  // ============================================
+  const enviarWhatsApp = (pedidoId, pedidoPayload) => {
+    const numeroConfeiteira = "5541999999999"; // ALTERAR AQUI
+
+    let mensagem = `📦 *NOVO PEDIDO REALIZADO*\n\n`;
+    mensagem += `🧾 *ID do Pedido:* ${pedidoId}\n`;
+    mensagem += `💰 *Total:* R$ ${pedidoPayload.valorTotal.toFixed(2)}\n`;
+    mensagem += `💳 *Pagamento:* ${
+      formaPagamento === "pix" ? "Pix" : "Pagar na Entrega"
+    }\n\n`;
+
+    mensagem += `📍 *Endereço:*\n`;
+    mensagem += `${rua}, ${bairro}\n${cidade} - ${uf}\nCEP: ${cep}\n\n`;
+
+    mensagem += `🍰 *Itens:* \n`;
+
+    if (pedidoPersonalizado) {
+      mensagem += `• Sabor: ${pedidoPersonalizado.itens[0].produtoId}\n`;
+      mensagem += `• Recheio: ${pedidoPersonalizado.itens[1].produtoId}\n`;
+      mensagem += `• Cobertura: ${pedidoPersonalizado.itens[2].produtoId}\n`;
+    } else {
+      cart.forEach((item) => {
+        mensagem += `• ${item.quantity}x ${item.name} — R$ ${(
+          item.price * item.quantity
+        ).toFixed(2)}\n`;
+      });
+    }
+
+    const url = `https://wa.me/${numeroConfeiteira}?text=${encodeURIComponent(
+      mensagem
+    )}`;
+
+    window.open(url, "_blank");
+  };
+
+  // ============================================
+  // FINALIZAR PEDIDO (backend + toast + WhatsApp)
+  // ============================================
   const finalizarPedido = async () => {
-    // Escolhe de onde vem o pedido
     const itensFinal =
-      pedidoPersonalizado?.itens && pedidoPersonalizado.itens.length > 0
+      pedidoPersonalizado?.itens?.length > 0
         ? pedidoPersonalizado.itens
         : cart.map((item) => ({
             produtoId: item.id,
@@ -80,8 +110,8 @@ export default function FinalizarPedido() {
 
     const totalFinal = pedidoPersonalizado?.valorTotal ?? total;
 
-    if (!itensFinal || itensFinal.length === 0) {
-      alert("Carrinho vazio ou pedido inválido!");
+    if (itensFinal.length === 0) {
+      alert("Carrinho vazio!");
       return;
     }
 
@@ -90,7 +120,6 @@ export default function FinalizarPedido() {
       return;
     }
 
-    // 🔥 payload final enviado ao backend
     const pedidoPayload = {
       clienteId: 1,
       valorTotal: totalFinal,
@@ -111,23 +140,34 @@ export default function FinalizarPedido() {
       });
 
       if (!response.ok) {
-        console.error("ERRO DO BACKEND:", await response.text());
+        console.error(await response.text());
         alert("Erro ao criar pedido!");
         return;
       }
 
       const pedidoCriado = await response.json();
 
-      // limpa carrinho e bolo personalizado
+      // 📢 TOAST AQUI — exatamente no momento certo
+      showOrderSentToast("Seu pedido foi enviado para a confeiteira! 🎀");
+
+      // 📩 WhatsApp automático
+      enviarWhatsApp(pedidoCriado.id, pedidoPayload);
+
+      // Limpar carrinho
       clearCart();
       localStorage.removeItem("pedido-personalizado");
 
+      // Redirecionar
       router.push(`/pedido-confirmado?id=${pedidoCriado.id}`);
     } catch (error) {
       console.error(error);
       alert("Erro inesperado ao finalizar o pedido.");
     }
   };
+
+  // ============================================
+  // JSX
+  // ============================================
 
   return (
     <div className="min-h-screen flex justify-center items-center py-10">
@@ -215,9 +255,9 @@ export default function FinalizarPedido() {
 
           {pedidoPersonalizado ? (
             <ul className="space-y-1 mb-3">
-              <li>Sabor: {pedidoPersonalizado?.itens[0]?.produtoId}</li>
-              <li>Recheio: {pedidoPersonalizado?.itens[1]?.produtoId}</li>
-              <li>Cobertura: {pedidoPersonalizado?.itens[2]?.produtoId}</li>
+              <li>Sabor: {pedidoPersonalizado.itens[0].produtoId}</li>
+              <li>Recheio: {pedidoPersonalizado.itens[1].produtoId}</li>
+              <li>Cobertura: {pedidoPersonalizado.itens[2].produtoId}</li>
             </ul>
           ) : cart.length === 0 ? (
             <p className="text-gray-500">Seu carrinho está vazio.</p>

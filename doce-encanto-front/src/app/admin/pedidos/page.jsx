@@ -28,14 +28,15 @@ export default function AdminPedidos() {
     loadPedidos();
   }, []);
 
-  // Filtro lógico
   const pedidosFiltrados = pedidos.filter((pedido) => {
     const matchStatus =
       filtroStatus === "todos" || pedido.status === filtroStatus;
 
     const matchCliente =
-      buscaCliente.trim() === "" ||
-      pedido.cliente.nome.toLowerCase().includes(buscaCliente.toLowerCase());
+      !buscaCliente ||
+      pedido.cliente.nome
+        .toLowerCase()
+        .includes(buscaCliente.toLowerCase());
 
     return matchStatus && matchCliente;
   });
@@ -74,23 +75,28 @@ export default function AdminPedidos() {
   }
 
   return (
-    <>
+    <div className="bg-[#CDECF9]">
       <Header />
-      <div className="p-6 max-w-6xl mx-auto mt-30 h-full">
-        <h1 className="text-3xl font-bold mb-6">Admin - Pedidos</h1>
+      
+
+
+      <div className="p-6 max-w-6xl h-[600px] mx-auto mt-28">
+        <h1 className="text-4xl font-bold mb-8 text-gray-800">
+          Gestão de Pedidos
+        </h1>
 
         {/* Filtros */}
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
           <input
             type="text"
             placeholder="Buscar por cliente..."
-            className="border p-2 rounded w-full"
+            className="border border-gray-300 p-3 rounded-lg w-full shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
             value={buscaCliente}
             onChange={(e) => setBuscaCliente(e.target.value)}
           />
 
           <select
-            className="border p-2 rounded"
+            className="border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
             value={filtroStatus}
             onChange={(e) => setFiltroStatus(e.target.value)}
           >
@@ -102,15 +108,15 @@ export default function AdminPedidos() {
         </div>
 
         {/* Tabela */}
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse shadow rounded-lg">
-            <thead className="bg-gray-200 text-left">
+        <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-200">
+          <table className="w-full">
+            <thead className="bg-gray-100 text-gray-700">
               <tr>
-                <th className="p-3">ID</th>
-                <th className="p-3">Cliente</th>
-                <th className="p-3">Status</th>
-                <th className="p-3">Total</th>
-                <th className="p-3">Ações</th>
+                <th className="p-3 font-medium">ID</th>
+                <th className="p-3 font-medium">Cliente</th>
+                <th className="p-3 font-medium">Status</th>
+                <th className="p-3 font-medium">Total</th>
+                <th className="p-3 font-medium text-center">Ações</th>
               </tr>
             </thead>
 
@@ -118,26 +124,40 @@ export default function AdminPedidos() {
               {pedidosFiltrados.map((pedido) => (
                 <tr
                   key={pedido.id}
-                  className="border-b hover:bg-gray-50 transition"
+                  className="border-t hover:bg-gray-50 transition"
                 >
                   <td className="p-3">{pedido.id}</td>
                   <td className="p-3">{pedido.cliente.nome}</td>
-                  <td className="p-3 capitalize">{pedido.status}</td>
-                  <td className="p-3">R$ {pedido.valorTotal.toFixed(2)}</td>
+                  <td className="p-3 capitalize font-semibold">
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm ${
+                        pedido.status === "pago"
+                          ? "bg-green-100 text-green-700"
+                          : pedido.status === "pendente"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : "bg-red-100 text-red-700"
+                      }`}
+                    >
+                      {pedido.status}
+                    </span>
+                  </td>
+                  <td className="p-3 font-medium">
+                    R$ {pedido.valorTotal.toFixed(2)}
+                  </td>
 
-                  <td className="p-3 flex gap-3">
+                  <td className="p-3 flex justify-center gap-3">
                     <button
-                      className="px-3 py-1 bg-blue-500 text-white rounded"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-sm"
                       onClick={() => abrirModal(pedido)}
                     >
-                      Ver detalhes
+                      Detalhes
                     </button>
 
                     <button
-                      className="px-3 py-1 bg-yellow-500 text-white rounded"
+                      className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg shadow-sm"
                       onClick={() => abrirModal(pedido)}
                     >
-                      Alterar status
+                      Status
                     </button>
                   </td>
                 </tr>
@@ -148,23 +168,26 @@ export default function AdminPedidos() {
 
         {/* Modal */}
         {modalOpen && pedidoSelecionado && (
-          <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4">
-            <div className="bg-white p-6 rounded-lg w-full max-w-md shadow-xl">
-              <h2 className="text-xl font-bold mb-4">
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-2xl animate-fadeIn">
+              <h2 className="text-2xl font-bold mb-4 text-gray-800">
                 Pedido #{pedidoSelecionado.id}
               </h2>
 
-              <p className="mb-2">
-                Cliente: <strong>{pedidoSelecionado.cliente.nome}</strong>
+              <p className="text-gray-700 mb-2">
+                Cliente:{" "}
+                <strong>{pedidoSelecionado.cliente.nome}</strong>
               </p>
 
-              <p className="mb-4">
+              <p className="text-gray-700 mb-4">
                 Total:{" "}
-                <strong>R$ {pedidoSelecionado.valorTotal.toFixed(2)}</strong>
+                <strong>
+                  R$ {pedidoSelecionado.valorTotal.toFixed(2)}
+                </strong>
               </p>
 
-              <h3 className="font-semibold mb-1">Itens:</h3>
-              <ul className="mb-4 list-disc ml-6">
+              <h3 className="font-semibold mb-2">Itens:</h3>
+              <ul className="mb-4 list-disc ml-6 text-gray-700">
                 {pedidoSelecionado.itens.map((item) => (
                   <li key={item.id}>
                     Produto #{item.produtoId} — {item.quantidade} un
@@ -172,9 +195,11 @@ export default function AdminPedidos() {
                 ))}
               </ul>
 
-              <label className="block mb-2">Status:</label>
+              <label className="block mb-2 font-medium">
+                Alterar status:
+              </label>
               <select
-                className="border p-2 rounded w-full mb-4"
+                className="border p-3 rounded-lg w-full mb-4 shadow-sm"
                 value={novoStatus}
                 onChange={(e) => setNovoStatus(e.target.value)}
               >
@@ -185,14 +210,14 @@ export default function AdminPedidos() {
 
               <div className="flex justify-end gap-3">
                 <button
-                  className="px-4 py-2 bg-gray-300 rounded"
+                  className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
                   onClick={fecharModal}
                 >
                   Fechar
                 </button>
 
                 <button
-                  className="px-4 py-2 bg-green-600 text-white rounded"
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow"
                   onClick={salvarStatus}
                 >
                   Salvar
@@ -202,7 +227,9 @@ export default function AdminPedidos() {
           </div>
         )}
       </div>
-      <Footer />
-    </>
+      
+
+      <Footer className="flex justify-center items-end" />
+    </div>
   );
 }

@@ -1,8 +1,10 @@
-import "./globals.css";
-import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/CartContext"; // ⬅ AQUI!
+"use client";
 
 import "./globals.css";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Meu App PWA",
@@ -19,12 +21,26 @@ export default function RootLayout({ children }) {
     <html lang="pt-br" className="bg-[#CDECF9]">
       <body className="h-full w-full font-sans text-gray-900 antialiased">
         <AuthProvider>
-          <CartProvider>
-            {" "}
-            {/* ⬅ ENVOLVE TUDO */}
-            {children}
-          </CartProvider>
+          <CartProvider>{children}</CartProvider>
         </AuthProvider>
+
+        {/* 🩷 AQUI: TOASTER GLOBAL ROSA */}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#ffe4f2",
+              color: "#b3006b",
+              border: "1px solid #ff99cc",
+              padding: "12px 16px",
+              borderRadius: "12px",
+            },
+            iconTheme: {
+              primary: "#ff1493",
+              secondary: "#ffe4f2",
+            },
+          }}
+        />
       </body>
     </html>
   );

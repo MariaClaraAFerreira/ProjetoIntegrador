@@ -67,12 +67,12 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-e43f5367'], (function (workbox) { 'use strict';
+define(['../../../../../Administrator/Desktop/Curso/Projeto2/ProjetoIntegrador/doce-encanto-front/node_modules/workbox-routing/registerRoute.mjs', '../../../../../Administrator/Desktop/Curso/Projeto2/ProjetoIntegrador/doce-encanto-front/node_modules/workbox-strategies/NetworkFirst.mjs', '../../../../../Administrator/Desktop/Curso/Projeto2/ProjetoIntegrador/doce-encanto-front/node_modules/workbox-strategies/NetworkOnly.mjs', '../../../../../Administrator/Desktop/Curso/Projeto2/ProjetoIntegrador/doce-encanto-front/node_modules/workbox-core/clientsClaim.mjs'], (function (registerRoute_mjs, NetworkFirst_mjs, NetworkOnly_mjs, clientsClaim_mjs) { 'use strict';
 
   importScripts();
   self.skipWaiting();
-  workbox.clientsClaim();
-  workbox.registerRoute("/", new workbox.NetworkFirst({
+  clientsClaim_mjs.clientsClaim();
+  registerRoute_mjs.registerRoute("/", new NetworkFirst_mjs.NetworkFirst({
     "cacheName": "start-url",
     plugins: [{
       cacheWillUpdate: async ({
@@ -92,7 +92,7 @@ define(['./workbox-e43f5367'], (function (workbox) { 'use strict';
       }
     }]
   }), 'GET');
-  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
+  registerRoute_mjs.registerRoute(/.*/i, new NetworkOnly_mjs.NetworkOnly({
     "cacheName": "dev",
     plugins: []
   }), 'GET');

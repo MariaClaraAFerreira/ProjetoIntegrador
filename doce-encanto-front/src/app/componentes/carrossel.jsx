@@ -47,12 +47,12 @@ export default function Carrosel() {
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index} className="basis-full">
-              <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh]">
+              <div className="relative w-full h-[10vh] sm:h-[60vh] md:h-[70vh]">
                 <Image
                   src={slide.src}
                   alt={slide.title}
                   fill
-                  className="object-button object-center brightness-110"
+                  className="object-button  rounded-xl brightness-110"
                 />
                 {/* Texto sobreposto no canto inferior esquerdo */}
                 <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-left">
