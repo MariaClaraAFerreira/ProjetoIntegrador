@@ -31,7 +31,7 @@ export default function Carrosel() {
       description: "Feitos com chocolate belga",
     },
     {
-      src: "/cupcake.jpeg",
+      src: "/cupcake1.jpeg",
       title: "Cupcakes Deliciosos",
       description: "Sabores únicos e especiais",
     },
@@ -52,7 +52,7 @@ export default function Carrosel() {
                   src={slide.src}
                   alt={slide.title}
                   fill
-                  className="object-cover brightness-75"
+                  className="object-button object-center brightness-110"
                 />
                 {/* Texto sobreposto no canto inferior esquerdo */}
                 <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-left">

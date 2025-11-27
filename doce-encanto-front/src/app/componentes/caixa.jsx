@@ -3,7 +3,7 @@ import { Heart } from 'lucide-react'
 
 export default function Caixa() {
   return (
-    <section className="bg-[url('/images/bg-candy.png')] bg-cover bg-center py-28 text-center h-[400px] bg-[#f9c9d6d2]">
+    <section className=" bg-cover bg-center py-28 text-center h-[400px] bg-[#f9c9d6d2]">
   <h1 className="text-6xl font-bold text-white drop-shadow-[2px_2px_10px_rgba(255,255,255,0.3)] font-[cursive]">
     Bem-vindos ao <span className="text-pink-400">Doce Encanto</span>
   </h1>
