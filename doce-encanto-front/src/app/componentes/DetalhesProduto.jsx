@@ -12,25 +12,75 @@ export default function DetalhesProduto({ id }) {
     const produtos = [
       {
         id: 1,
-        nome: "Bolo de Chocolate",
+        nome: "Bolo Red Velved",
         preco: 45.9,
-        descricao: "Bolo fofinho com cobertura de ganache artesanal.",
-        imagem: "https://images.unsplash.com/photo-1601972599720-b7a56f56af6b",
+        descricao: "Red Velved, naked cake, recheio de brigadeiro de cream chesse",
+        imagem: "/bolo1.jpeg",
       },
       {
         id: 2,
         nome: "Torta de Limão",
         preco: 39.9,
-        descricao: "Torta cremosa com raspas de limão e base crocante.",
-        imagem: "https://images.unsplash.com/photo-1612197527762-9435f54d0da1",
+        descricao: "Recheio com raspas de limão e base crocante.",
+        imagem: "/bolo2.jpeg",
       },
       {
         id: 3,
-        nome: "Brigadeiro Gourmet",
+        nome: "Bolo doce de  Leite",
         preco: 2.5,
-        descricao: "Feito com chocolate belga e leite condensado premium.",
-        imagem: "https://images.unsplash.com/photo-1612201081670-4439dcd54a8d",
+        descricao: "Recheio de doce de leite suave com morango, cobertura de chantininho.",
+        imagem: "/bolo3.jpeg",
       },
+
+       {
+        id: 4,
+        nome: "Bolo doce de  Leite",
+        preco: 2.5,
+        descricao: "Recheio de doce de leite suave com morango, cobertura de chantininho.",
+        imagem: "/bolo4.jpeg",
+      },
+
+       {
+        id: 5,
+        nome: "Bolo de Ninho",
+        preco: 2.5,
+        descricao: "Recheio de ninho com raspas de chocolate ,cobertura chatilly.",
+        imagem: "/bolo5.jpeg",
+      },
+
+      {
+        id: 6,
+        nome: "Ovo de pascoa recheado Maracuja",
+        preco: 2.5,
+        descricao: "Brigadeiro com musse de maracuja ,bordas com castanha de caju.",
+        imagem: "/bolo6.jpeg",
+      },
+
+      {
+        id: 7,
+        nome: "Ovo de pascoa Ninho",
+        preco: 2.5,
+        descricao: "Recheio de ninho com uva.",
+        imagem: "/bolo7.jpeg",
+      },
+
+
+      {
+        id: 12,
+        nome: "Bolo de Ninho",
+        preco: 2.5,
+        descricao: "Recheio de ninho com uva, cobertura chantininho.",
+        imagem: "/bolo12.jpeg",
+      },
+
+      {
+        id: 13,
+        nome: "Bolo de doce de leite com geleia",
+        preco: 2.5,
+        descricao: "Recheio de doce de leite suave com geleia de morango, cobertura de chantininho.",
+        imagem: "/bolo13.jpeg",
+      },
+
     ];
 
     const encontrado = produtos.find((p) => p.id === Number(id));
