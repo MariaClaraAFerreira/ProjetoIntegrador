@@ -11,82 +11,75 @@ export default function CardProdutos() {
   const categorias = [
     { key: "todas", nome: "Todas" },
     { key: "bolos", nome: "Bolos" },
-    { key: "tortas", nome: "Tortas" },
-    { key: "doces", nome: "Doces" },
-    { key: "cupcakes", nome: "Cupcakes" },
+    { key: "ovos de pascoa", nome: "ovos de pascoa" },
+    { key: "cupcakes", nome: "cupcakes" },
   ];
 
   const produtos = [
     {
       id: 1,
       nome: "Bolo Red Velved",
-      preco: 45.9,
+      preco: 100.00,
       imagem: "bolo1.jpeg",
       categoria: "bolos",
     },
     {
       id: 2,
       nome: "bolo 1",
-      preco: 39.9,
+      preco: 180.00,
 
       imagem: "bolo2.jpeg",
 
-      categoria: "tortas",
+      categoria: "bolos",
     },
     {
       id: 3,
-      nome: "Bolo 2",
-      preco: 2.5,
+      nome: "Bolo doce de Leite",
+      preco: 180.00,
 
       imagem: "bolo3.jpeg",
 
-      categoria: "doces",
+      categoria: "bolos",
     },
     {
       id: 4,
-      nome: "Bolo 3",
-      preco: 7.9,
+      nome: "Bolo doce de Leite com morango",
+      preco: 180.00,
 
       imagem: "bolo4.jpeg",
 
-      categoria: "cupcakes",
+      categoria: "bolos",
     },
     {
       id: 5,
-      nome: "Bolo 4",
-      preco: 55.9,
+      nome: "Bolo de Ninho",
+      preco: 170.00,
       imagem: "bolo5.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 6,
-      nome: "Bolo 5",
-      preco: 55.9,
+      nome: "Ovo de Páscoa maracujá",
+      preco: 35.00,
       imagem: "bolo6.jpeg",
-      categoria: "bolos",
+      categoria: "ovos de pascoa",
     },
 
     {
       id: 7,
-      nome: "Bolo 6",
-      preco: 55.9,
+      nome: "Ovo de Páscoa Ninho",
+      preco: 35.00,
       imagem: "bolo7.jpeg",
-      categoria: "bolos",
+      categoria: "ovos de pascoa",
     },
 
-    {
-      id: 8,
-      nome: "Bolo 7",
-      preco: 55.9,
-      imagem: "bolo8.jpeg",
-      categoria: "bolos",
-    },
+    
 
     {
       id: 9,
       nome: "Bolo 8",
-      preco: 55.9,
+      preco: 200.00,
       imagem: "bolo9.jpeg",
       categoria: "bolos",
     },
@@ -94,7 +87,7 @@ export default function CardProdutos() {
     {
       id: 10,
       nome: "Bolo 9",
-      preco: 55.9,
+      preco: 170.00,
       imagem: "bolo10.jpeg",
       categoria: "bolos",
     },
@@ -102,41 +95,41 @@ export default function CardProdutos() {
     {
       id: 11,
       nome: "Bolo 10",
-      preco: 55.9,
+      preco: 250.00,
       imagem: "bolo11.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 12,
-      nome: "Bolo 12",
-      preco: 55.9,
+      nome: "Bolo de Ninho",
+      preco: 200.00,
       imagem: "bolo12.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 13,
-      nome: "Bolo 13",
-      preco: 55.9,
+      nome: "Bolo de doce de Leite com Geleia de Morango",
+      preco: 150.00,
       imagem: "bolo13.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 14,
-      nome: "Cup Cake 1",
-      preco: 55.9,
+      nome: "Cupcake ",
+      preco: 12.50,
       imagem: "cupcake1.jpeg",
-      categoria: "bolos",
+      categoria: "cupcakes",
     },
 
     {
       id: 15,
-      nome: "Bombom1",
-      preco: 55.9,
+      nome: "Bombom",
+      preco: 3.50,
       imagem: "bombom1.jpeg",
-      categoria: "bolos",
+      categoria: "bombom",
     },
   ];
 
