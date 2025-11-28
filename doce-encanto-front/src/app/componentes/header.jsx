@@ -25,8 +25,9 @@ export default function Header() {
     <header className="fixed top-0 w-full z-50 bg-white shadow-xl">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
 
+        {/* DESKTOP */}
         <nav className="hidden md:flex items-center justify-between w-full bg-[#CDECF9] shadow-xl px-6 py-3 ml-6 rounded-xl">
-          
+
           {/* LOGO */}
           <div className="flex items-center gap-3">
             <Image
@@ -57,11 +58,22 @@ export default function Header() {
               Monte seu Bolo
             </Link>
 
+            {/* 🔥 SOMENTE ADMIN — Botão Pedidos */}
+            {cliente?.nivel === "admin" && (
+              <Link
+                href="/admin/pedidos"
+                className="flex items-center gap-1 text-red-600 font-semibold hover:text-red-700 transition"
+              >
+                <Cake className="w-4 h-4" />
+                Pedidos
+              </Link>
+            )}
+
             <div className="h-6 w-px bg-gray-300 mx-2"></div>
 
             {/* ==============================
-                  SE ESTÁ LOGADO
-               ============================== */}
+                SE ESTÁ LOGADO
+            =============================== */}
             {cliente ? (
               <>
                 <span className="text-gray-700 font-medium flex items-center gap-1">
@@ -81,9 +93,6 @@ export default function Header() {
               </>
             ) : (
               <>
-                {/* ==============================
-                      NÃO LOGADO — Mostrar Login/Cadastro
-                  ============================== */}
                 <Link href="/login">
                   <Button
                     variant="outline"
@@ -123,6 +132,13 @@ export default function Header() {
           <nav className="flex flex-col items-center gap-3 py-4">
             <Link href="/" className="text-gray-700 hover:text-pink-600">Início</Link>
             <Link href="/monte-seu-bolo" className="text-gray-700 hover:text-pink-600">Monte seu Bolo</Link>
+
+            {/* 🔥 MOBILE — Botão Pedidos para ADMIN */}
+            {cliente?.nivel === "admin" && (
+              <Link href="/admin/pedidos" className="text-red-600 font-semibold">
+                Pedidos
+              </Link>
+            )}
 
             {cliente ? (
               <>
