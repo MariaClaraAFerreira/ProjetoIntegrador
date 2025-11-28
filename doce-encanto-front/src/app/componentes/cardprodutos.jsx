@@ -18,14 +18,14 @@ export default function CardProdutos() {
   const produtos = [
     {
       id: 1,
-      nome: "Bolo Red Velved",
+      nome: "Bolo Red Velved       ",
       preco: 100.00,
       imagem: "bolo1.jpeg",
       categoria: "bolos",
     },
     {
       id: 2,
-      nome: "bolo 1",
+      nome: "Bolo de Morango com Nozes",
       preco: 180.00,
 
       imagem: "bolo2.jpeg",
@@ -78,7 +78,7 @@ export default function CardProdutos() {
 
     {
       id: 9,
-      nome: "Bolo 8",
+      nome: "Bolo Ganache de maracujá",
       preco: 200.00,
       imagem: "bolo9.jpeg",
       categoria: "bolos",
@@ -86,7 +86,7 @@ export default function CardProdutos() {
 
     {
       id: 10,
-      nome: "Bolo 9",
+      nome: "Bolo musse de chocolate",
       preco: 170.00,
       imagem: "bolo10.jpeg",
       categoria: "bolos",
@@ -94,7 +94,7 @@ export default function CardProdutos() {
 
     {
       id: 11,
-      nome: "Bolo 10",
+      nome: "Bolo sem lactose",
       preco: 250.00,
       imagem: "bolo11.jpeg",
       categoria: "bolos",
@@ -181,7 +181,7 @@ export default function CardProdutos() {
               />
             </div>
 
-            <div className="p-4 text-center border border-[#D59050] bg-pink-100 rounded-b-2xl">
+            <div className="p-4 text-center flex flex-col  items-center justify-end  border border-[#D59050] h-50  bg-pink-100 rounded-b-2xl">
               <h2 className="text-lg font-bold text-gray-800">
                 {produto.nome}
               </h2>

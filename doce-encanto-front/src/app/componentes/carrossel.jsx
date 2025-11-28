@@ -42,17 +42,17 @@ export default function Carrosel() {
       <Carousel
         opts={{ align: "center", loop: true }}
         plugins={[plugin.current]}
-        className="w-full rounded-xl overflow-hidden"
+        className="w-[800px] h-[300px] rounded-xl flex items-center justify-center ml-55 overflow-hidden"
       >
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index} className="basis-full">
-              <div className="relative w-full h-[10vh] sm:h-[60vh] md:h-[70vh]">
+              <div className="relative w-[800px] flex justify-center items-center h-[10vh] sm:h-[60vh] md:h-[50vh]">
                 <Image
                   src={slide.src}
                   alt={slide.title}
                   fill
-                  className="object-button  rounded-xl brightness-110"
+                  className="object-center rounded-xl brightness-110 bg-red-500"
                 />
                 {/* Texto sobreposto no canto inferior esquerdo */}
                 <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-left">
