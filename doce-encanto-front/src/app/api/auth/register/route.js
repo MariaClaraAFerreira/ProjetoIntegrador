@@ -29,7 +29,6 @@ export async function POST(request) {
       },
     });
 
-
     return NextResponse.json(
       { message: "Conta criada com sucesso", cliente: newCliente },
       { status: 201 }
