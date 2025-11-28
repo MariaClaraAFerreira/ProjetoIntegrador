@@ -18,15 +18,24 @@ export default function CardProdutos() {
   const produtos = [
     {
       id: 1,
+<<<<<<< HEAD
       nome: "Bolo Red Velvet",
       preco: 100.0,
+=======
+      nome: "Bolo Red Velved       ",
+      preco: 100.00,
+>>>>>>> 82436d58c9f7c91fc40e77e6c33ec13d6b0e1bd6
       imagem: "bolo1.jpeg",
       categoria: "bolos",
     },
     {
       id: 2,
       nome: "Bolo de Morango com Nozes",
+<<<<<<< HEAD
       preco: 180.0,
+=======
+      preco: 180.00,
+>>>>>>> 82436d58c9f7c91fc40e77e6c33ec13d6b0e1bd6
 
       imagem: "bolo2.jpeg",
 
@@ -76,24 +85,39 @@ export default function CardProdutos() {
 
     {
       id: 9,
+<<<<<<< HEAD
       nome: "Bolo com recheio de ganache de maracujá",
       preco: 200.0,
+=======
+      nome: "Bolo Ganache de maracujá",
+      preco: 200.00,
+>>>>>>> 82436d58c9f7c91fc40e77e6c33ec13d6b0e1bd6
       imagem: "bolo9.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 10,
+<<<<<<< HEAD
       nome: "Bolo 9",
       preco: 170.0,
+=======
+      nome: "Bolo musse de chocolate",
+      preco: 170.00,
+>>>>>>> 82436d58c9f7c91fc40e77e6c33ec13d6b0e1bd6
       imagem: "bolo10.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 11,
+<<<<<<< HEAD
       nome: "Bolo 10",
       preco: 250.0,
+=======
+      nome: "Bolo sem lactose",
+      preco: 250.00,
+>>>>>>> 82436d58c9f7c91fc40e77e6c33ec13d6b0e1bd6
       imagem: "bolo11.jpeg",
       categoria: "bolos",
     },
@@ -179,7 +203,7 @@ export default function CardProdutos() {
               />
             </div>
 
-            <div className="p-4 text-center border border-[#D59050] bg-pink-100 rounded-b-2xl">
+            <div className="p-4 text-center flex flex-col  items-center justify-end  border border-[#D59050] h-50  bg-pink-100 rounded-b-2xl">
               <h2 className="text-lg font-bold text-gray-800">
                 {produto.nome}
               </h2>
