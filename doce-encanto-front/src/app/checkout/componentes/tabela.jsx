@@ -62,7 +62,7 @@ export default function FinalizarPedido() {
   // WHATSAPP – Envia a mensagem automaticamente
   // ============================================
   const enviarWhatsApp = (pedidoId, pedidoPayload) => {
-    const numeroConfeiteira = "5541999999999"; // ALTERAR AQUI
+    const numeroConfeiteira = "553597574509"; // ALTERAR AQUI
 
     let mensagem = `📦 *NOVO PEDIDO REALIZADO*\n\n`;
     mensagem += `🧾 *ID do Pedido:* ${pedidoId}\n`;
