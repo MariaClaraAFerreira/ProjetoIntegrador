@@ -18,15 +18,15 @@ export default function CardProdutos() {
   const produtos = [
     {
       id: 1,
-      nome: "Bolo Red Velved",
-      preco: 100.00,
+      nome: "Bolo Red Velved       ",
+      preco: 100.0,
       imagem: "bolo1.jpeg",
       categoria: "bolos",
     },
     {
       id: 2,
-      nome: "bolo 1",
-      preco: 180.00,
+      nome: "Bolo de Morango com Nozes",
+      preco: 180.0,
 
       imagem: "bolo2.jpeg",
 
@@ -35,7 +35,7 @@ export default function CardProdutos() {
     {
       id: 3,
       nome: "Bolo doce de Leite",
-      preco: 180.00,
+      preco: 180.0,
 
       imagem: "bolo3.jpeg",
 
@@ -44,7 +44,7 @@ export default function CardProdutos() {
     {
       id: 4,
       nome: "Bolo doce de Leite com morango",
-      preco: 180.00,
+      preco: 180.0,
 
       imagem: "bolo4.jpeg",
 
@@ -53,7 +53,7 @@ export default function CardProdutos() {
     {
       id: 5,
       nome: "Bolo de Ninho",
-      preco: 170.00,
+      preco: 170.0,
       imagem: "bolo5.jpeg",
       categoria: "bolos",
     },
@@ -61,7 +61,7 @@ export default function CardProdutos() {
     {
       id: 6,
       nome: "Ovo de Páscoa maracujá",
-      preco: 35.00,
+      preco: 35.0,
       imagem: "bolo6.jpeg",
       categoria: "ovos de pascoa",
     },
@@ -69,33 +69,31 @@ export default function CardProdutos() {
     {
       id: 7,
       nome: "Ovo de Páscoa Ninho",
-      preco: 35.00,
+      preco: 35.0,
       imagem: "bolo7.jpeg",
       categoria: "ovos de pascoa",
     },
 
-    
-
     {
       id: 9,
-      nome: "Bolo 8",
-      preco: 200.00,
+      nome: "Bolo Ganache de maracujá",
+      preco: 200.0,
       imagem: "bolo9.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 10,
-      nome: "Bolo 9",
-      preco: 170.00,
+      nome: "Bolo musse de chocolate",
+      preco: 170.0,
       imagem: "bolo10.jpeg",
       categoria: "bolos",
     },
 
     {
       id: 11,
-      nome: "Bolo 10",
-      preco: 250.00,
+      nome: "Bolo sem lactose",
+      preco: 250.0,
       imagem: "bolo11.jpeg",
       categoria: "bolos",
     },
@@ -103,7 +101,7 @@ export default function CardProdutos() {
     {
       id: 12,
       nome: "Bolo de Ninho",
-      preco: 200.00,
+      preco: 200.0,
       imagem: "bolo12.jpeg",
       categoria: "bolos",
     },
@@ -111,7 +109,7 @@ export default function CardProdutos() {
     {
       id: 13,
       nome: "Bolo de doce de Leite com Geleia de Morango",
-      preco: 150.00,
+      preco: 150.0,
       imagem: "bolo13.jpeg",
       categoria: "bolos",
     },
@@ -119,7 +117,7 @@ export default function CardProdutos() {
     {
       id: 14,
       nome: "Cupcake ",
-      preco: 12.50,
+      preco: 12.5,
       imagem: "cupcake1.jpeg",
       categoria: "cupcakes",
     },
@@ -127,7 +125,7 @@ export default function CardProdutos() {
     {
       id: 15,
       nome: "Bombom",
-      preco: 3.50,
+      preco: 3.5,
       imagem: "bombom1.jpeg",
       categoria: "bombom",
     },
@@ -181,7 +179,7 @@ export default function CardProdutos() {
               />
             </div>
 
-            <div className="p-4 text-center border border-[#D59050] bg-pink-100 rounded-b-2xl">
+            <div className="p-4 text-center flex flex-col  items-center justify-end  border border-[#D59050] h-50  bg-pink-100 rounded-b-2xl">
               <h2 className="text-lg font-bold text-gray-800">
                 {produto.nome}
               </h2>

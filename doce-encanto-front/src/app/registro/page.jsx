@@ -132,16 +132,6 @@ export default function CustomRegister() {
   };
 
   const passwordStrength = getPasswordStrength();
-  const signInWithGoogle = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/");
-        },
-      },
-    });
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100">
