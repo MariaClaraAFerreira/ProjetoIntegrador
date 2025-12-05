@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ProductForm from "../componentes/ProductForm";
 import ProductList from "../componentes/ProductList";
 import EditModal from "../componentes/EditModal";
+import Header from "@/app/componentes/header";
+import Footer from "@/app/componentes/footer";
 
 export default function AdminCadastro() {
   const [produtos, setProdutos] = useState([]);
@@ -35,28 +37,32 @@ export default function AdminCadastro() {
   }
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-pink-700">
-        Cadastro de Produtos
-      </h1>
+    <>
+      <Header />
+      <div className="p-6 max-w-5xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-pink-700">
+          Cadastro de Produtos
+        </h1>
 
-      <div className="bg-white shadow-lg rounded-2xl p-6 mb-10 border border-pink-200">
-        <ProductForm onSuccess={loadProdutos} />
-      </div>
+        <div className="bg-white shadow-lg rounded-2xl p-6 mb-10 border border-pink-200">
+          <ProductForm onSuccess={loadProdutos} />
+        </div>
 
-      <ProductList
-        produtos={produtos}
-        onRefresh={loadProdutos}
-        onEdit={openEdit}
-      />
-
-      {modalOpen && (
-        <EditModal
-          produto={editingProduto}
-          onClose={closeModal}
-          onSuccess={loadProdutos}
+        <ProductList
+          produtos={produtos}
+          onRefresh={loadProdutos}
+          onEdit={openEdit}
         />
-      )}
-    </div>
+
+        {modalOpen && (
+          <EditModal
+            produto={editingProduto}
+            onClose={closeModal}
+            onSuccess={loadProdutos}
+          />
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }

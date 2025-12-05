@@ -37,7 +37,7 @@ model Produto {
   descricao      String?
   preco          Float
   
-  imagemUrl      String?
+  imagemUrl      String? 
   criadoEm       DateTime  @default(now())
   itensPedido    ItemPedido[]
 }
